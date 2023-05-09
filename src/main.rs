@@ -1,7 +1,6 @@
 use std::rc::Rc;
 
 fn take_string(s:String) {
-
 }
 
 
@@ -23,5 +22,16 @@ fn main() {
     println!("{}", n2);
 
     let x="kkj";
+
+    //assert_eq!(Rc::strong_count(&n1), 1);
+    assert_eq!(Rc::strong_count(&n1), 2); // ok
+
+    {
+        let n3: Rc<String> = Rc::clone(&n1);
+        println!("i cloned n1 in the block and see how count work");
+        assert_eq!(Rc::strong_count(&n1), 3);
+    }
+    println!("what about outside of the block");
+    assert_eq!(Rc::strong_count(&n1), 2);
 
 }
