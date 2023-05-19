@@ -9,12 +9,7 @@ struct Transaction {
     amount: i64
 }
 
-impl Transaction {
-    
-}
 
 fn main() {
-
-
 
 }
