@@ -12,3 +12,7 @@ edition = "2021"
 [[bin]]
 name = "enum"
 path = "src/enum.rs"
+
+[[bin]]
+name = "error"
+path = "src/error.rs"
