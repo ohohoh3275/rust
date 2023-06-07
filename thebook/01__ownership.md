@@ -114,3 +114,117 @@ let s2 = s1;
 
 
 ---
+
+
+- Rust's deep copy : use `clone`
+
+```
+let s1 = String::from("i will be deep copied");
+let s2 = s1.clone();
+
+println!("s1 = {s1}, s2 = {s2}");
+```
+
+-> heap data DOES get copied
+
+---
+
+❓ in a way of not String, but integer
+
+ ```
+ let x = 5;
+ let y = x;
+ 
+ println!("x = {x}, y = {y}");
+ ```
+- this works.
+  - not with `clone`
+  - x did not `moved` to y
+
+because it's Stack-Only Data's copy
+  - no difference between deep and swallow copying
+ 
++) there are `traits` in Rust language : Copy, Drop
+  - these can implement Copy
+    - integer (u32)
+    - Boolean (bool, true, false)
+    - floating-point type (f64)
+    - characer (char)
+    - Tuples (i32, i32 o) / (i32, String x)
+
+---
+with Function
+
+- function that takes ownership
+
+```
+fn this_will_take_ownership(str: String) {
+  println("{str}");
+}
+
+fn main() {
+  let str = String::from("spoiler : this will be taken by function");
+  
+  this_will_take_ownership(str);
+ 
+}
+```
+
+- with integer
+
+```
+fn what_about_integer(int: i32) {
+  println("{int}");
+}
+
+fn main() {
+  let i = 5;
+  what_about_integer(i);
+  
+  println("{i} is Copy. so it is still valid");
+}
+
+```
+
+- return value
+```
+fn just_return_any_string() -> String {
+  
+  let str = String::from("any");
+  
+  str // this returns str
+}
+
+fn returns_argument_string_itself(str: String) -> String {
+  str
+}
+
+fn main() {
+
+  let s1 = just_return_any_string();
+  let s2 = String::from("i am newly declared");
+  let s3 = returns_argument_string_itself(s2);
+  
+  // valid when printing out : s1, s3
+}
+```
+
+- return multiple value using tuple
+
+```
+fn return_length_of_string -> (String, usize) {
+
+  let length = s.len();
+  
+  (s, length)
+}
+
+fn main() {
+  let s1 = String::from("hi there");
+  
+  let (s2, length) = return_length_of_string(s1);
+  
+  println!("the length '{s2}' is {len}");
+}
+```
+
