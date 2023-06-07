@@ -9,7 +9,7 @@
 
 The Book
 
-- [v] Ownership 
+- [x] Ownership 
   - [ ] Copy trait
 - [ ] Reference and Borrowing
 - [ ] Dereferencing
