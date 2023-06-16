@@ -65,4 +65,30 @@ println!("{r1}, {r2}");”
   - errors out `cannot borrow s as mutable more than once at a time`
 
 ... think about this!
+
+- this let you prevent access one data at the multiple same time.
+- means Rust can prevent <u>data races</u> at compile time.
+> data race <br/>
+two or more threads in a single process access the same memory location concurrently, <br/>
+and at least one of the accesses is for writing, <br/>
+and the threads are not using any exclusive locks to control their accesses to that memory.
+
+❗ to access multiple mutable variable by using scope
+
+```
+let mut s = String::from("hello");
+
+{
+    let r1 = &mut s;
+} // r1 goes out of scope here, so we can make a new reference with no problems
+
+let r2 = &mut s;
+```
+
+❓ but there is Rust's base policy that we cannot have either mutable nor immutable reference that are multiple at the same initial variable that whatever mutability is.
+
+---
+
+
+
 ---
