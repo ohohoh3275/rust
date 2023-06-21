@@ -16,3 +16,8 @@ path = "src/enum.rs"
 [[bin]]
 name = "error"
 path = "src/error.rs"
+
+
+[[bin]]
+name = "reference"
+path = "src/reference.rs"
