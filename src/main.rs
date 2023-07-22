@@ -13,8 +13,9 @@ fn main() {
     // one-owner-at-a-time
     let s: String = String::from("Oh");
 
-    //let s2 = s;
-    //println!("{}", s);
+    let s2 = s;
+    println!("{}", s2);
+
 
     let n1 = Rc::new(String::from("i am rc string which is different from just String"));
     let n2= Rc::clone(&n1);

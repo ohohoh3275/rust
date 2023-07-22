@@ -3,6 +3,7 @@
 - AS-IS
   - function `calculate_length` made s2 take s1's ownership.
   - so it is not printing when s1 called after the function(calculate_length) executed
+
 ```
 fn main() {
     let s1 = String::from("hello");
@@ -10,7 +11,7 @@ fn main() {
     let (s2, len) = calculate_length(s1);
 
     println!("The length of '{s2}' is {len}.");
-    
+
     println!(s1); // !not working!
 }
 
@@ -22,6 +23,7 @@ fn calculate_length(s: String) -> (String, usize) {
 ```
 
 - TO-BE
+
 ```
 fn main() {
     let s1 = String::from("hello");
@@ -36,21 +38,18 @@ fn calculate_length(s: &String) -> usize {
 }
 ```
 
-
-  - instead of using `String`, we use `&String`
-  - `&` represent `references`
-    - this help us to refer to some value without taking ownership.
-  - &String value points String == s: &String -> s1: String
-  - reference points original variable, not value itself.
-  - we call <u>reference `borrows` not `owns`</u>
- 
+- instead of using `String`, we use `&String`
+- `&` represent `references`
+  - this help us to refer to some value without taking ownership.
+- &String value points String == s: &String -> s1: String
+- reference points original variable, not value itself.
+- we call <u>reference `borrows` not `owns`</u>
 
 > borrowed, reference value is <b>immutable</b> by default.
 
 ---
 
 - mutable reference
-
 
 ```
 let mut s = String::from("hello"); // change declaring String firstly
@@ -61,6 +60,7 @@ let r2 = &mut s;
 println!("{r1}, {r2}");”
 
 ```
+
 - but it is not working codes above.
   - errors out `cannot borrow s as mutable more than once at a time`
 
@@ -68,10 +68,10 @@ println!("{r1}, {r2}");”
 
 - this let you prevent access one data at the multiple same time.
 - means Rust can prevent <u>data races</u> at compile time.
-> data race <br/>
-two or more threads in a single process access the same memory location concurrently, <br/>
-and at least one of the accesses is for writing, <br/>
-and the threads are not using any exclusive locks to control their accesses to that memory.
+  > data race <br/>
+  > two or more threads in a single process access the same memory location concurrently, <br/>
+  > and at least one of the accesses is for writing, <br/>
+  > and the threads are not using any exclusive locks to control their accesses to that memory.
 
 ❗ to access multiple mutable variable by using scope
 
@@ -84,11 +84,3 @@ let mut s = String::from("hello");
 
 let r2 = &mut s;
 ```
-
-❓ but there is Rust's base policy that we cannot have either mutable nor immutable reference that are multiple at the same initial variable that whatever mutability is.
-
----
-
-
-
----
